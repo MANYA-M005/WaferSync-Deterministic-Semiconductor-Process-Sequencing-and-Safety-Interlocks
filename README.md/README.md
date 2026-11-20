@@ -190,6 +190,22 @@ slay ws_supervisor ws_interlock ws_chamber ws_handler   # clean up after a crash
 
 ---
 
+System Profiler :
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+
+Reuslts :
+![alt text](image-3.png)
+
+![alt text](image-4.png)
+
+
+
 ## 🔭 Future Work
 
 - Real process sensors and industrial equipment interfaces
