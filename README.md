@@ -72,7 +72,8 @@ WaferSync is **five QNX programs**. The launcher starts four independent real-ti
 
 ### State machine
 
-![alt text](image-5.png)
+<img width="962" height="1600" alt="image" src="https://github.com/user-attachments/assets/f883b662-76d5-4897-9799-8836bb1e9c01" />
+
 
 - **Chamber fault** (temperature, pressure or seal) → protective state. After the fault clears and the checkpoint is verified, the **interrupted stage restarts**. Only **one recovery** is allowed per run.
 - **Handler fault** (position or handler health), a **second fault**, or an **invalid checkpoint** → **controlled abort**.
@@ -148,18 +149,17 @@ No hardware? Build with `-DNO_HW_GPIO` for a full **simulation mode**. Temperatu
 
 System Profiler :
 
-![alt text](image.png)
+<img width="1600" height="868" alt="image" src="https://github.com/user-attachments/assets/b4a1fb62-63e1-4e74-a2ef-126785d9b4ca" />
 
-![alt text](image-1.png)
+<img width="1587" height="800" alt="image" src="https://github.com/user-attachments/assets/346639d3-17bc-4004-9050-03b438a23481" />
 
-![alt text](image-2.png)
+<img width="1600" height="840" alt="image" src="https://github.com/user-attachments/assets/6b4910d2-7bfb-472e-8a35-ce9b59524454" />
 
 
 Reuslts :
-![alt text](image-3.png)
+<img width="1600" height="771" alt="image" src="https://github.com/user-attachments/assets/3eaf9d91-7e49-406c-b47c-61d7db0e229e" />
 
-![alt text](image-4.png)
-
+<img width="1600" height="645" alt="image" src="https://github.com/user-attachments/assets/729c81b4-4631-4f2f-a0c8-022f9a0552e3" />
 
 
 ## 🔭 Future Work
