@@ -73,18 +73,7 @@ WaferSync is **five QNX programs**. The launcher starts four independent real-ti
 
 ### State machine
 
-```mermaid
-stateDiagram-v2
-    [*] --> IDLE
-    IDLE --> RUNNING: start
-    RUNNING --> COMPLETE: all 5 stages done
-    RUNNING --> PROTECTIVE: interlock / deadline miss / entry fail
-    PROTECTIVE --> RUNNING: fault cleared + checkpoint OK (1 recovery)
-    PROTECTIVE --> ABORTING: handler fault / 2nd fault / bad checkpoint
-    ABORTING --> ABORTED: wafer parked, record sealed
-    COMPLETE --> IDLE: reset
-    ABORTED --> IDLE: reset
-```
+![alt text](image-5.png)
 
 - **Chamber fault** (temperature, pressure or seal) → protective state. After the fault clears and the checkpoint is verified, the **interrupted stage restarts**. Only **one recovery** is allowed per run.
 - **Handler fault** (position or handler health), a **second fault**, or an **invalid checkpoint** → **controlled abort**.
@@ -131,38 +120,6 @@ stateDiagram-v2
 No hardware? Build with `-DNO_HW_GPIO` for a full **simulation mode**. Temperature and wafer position are simulated and faults are injected from the keyboard.
 
 ---
-
-## 🚀 Build and Run
-
-**Projects** (one QNX C project each, target **AArch64le**):
-
-```
-wafersync/        wafersync.c        ← launcher + CLI
-ws_supervisor/    ws_supervisor.c
-ws_interlock/     ws_interlock.c
-ws_chamber/       ws_chamber.c
-ws_handler/       ws_handler.c
-wafersync_common/ wafersync_common.h ← shared header (copy it next to each .c file)
-```
-
-**Build** (hardware):
-```bash
-qcc -Vgcc_ntoaarch64le -Iwafersync_common -o bin/wafersync     wafersync/wafersync.c
-qcc -Vgcc_ntoaarch64le -Iwafersync_common -o bin/ws_supervisor ws_supervisor/ws_supervisor.c
-qcc -Vgcc_ntoaarch64le -Iwafersync_common -o bin/ws_interlock  ws_interlock/ws_interlock.c
-qcc -Vgcc_ntoaarch64le -Iwafersync_common -o bin/ws_chamber    ws_chamber/ws_chamber.c
-qcc -Vgcc_ntoaarch64le -Iwafersync_common -o bin/ws_handler    ws_handler/ws_handler.c
-```
-Add `-DNO_HW_GPIO` for simulation, or just run `./build.sh` (`./build.sh sim`).
-
-**Run** (copy all 5 programs to the **same folder** on the Pi, as root):
-```bash
-./wafersync            # starts everything
-./wafersync nocolor    # no ANSI colours
-./wafersync load &     # CPU load generator
-./wafersync replay     # verify and decode the blackbox log
-slay ws_supervisor ws_interlock ws_chamber ws_handler   # clean up after a crash
-```
 
 ### ⌨️ Dashboard keys
 
