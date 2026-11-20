@@ -37,9 +37,8 @@ Semiconductor wafer processing must run in a strict order, inside tight timing w
 4. [QNX Concepts Used](#-qnx-concepts-used)
 5. [Checkpoint and Blackbox](#-checkpoint-and-blackbox)
 6. [Hardware (Raspberry Pi 4)](#-hardware-raspberry-pi-4)
-7. [Build and Run](#-build-and-run)
-8. [Fault-Injection Tests](#-fault-injection-tests)
-9. [Future Work](#-future-work)
+7. [Fault-Injection Tests](#-fault-injection-tests)
+8. [Future Work](#-future-work)
 
 ---
 
